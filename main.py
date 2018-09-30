@@ -1,34 +1,60 @@
+#!/usr/bin/python
+
 import sys
 import argparse
 import node
 
-parser = argparse.ArgumentParser(description='Solution to 11 tile puzzle with DFS, BFS and A*')
-# P puzzle vector
-parser.add_argument('integers', metavar='P', type=int, nargs='+', help=' 11 integers for the puzzle')
+from DFS import DFS
+from BFS import BFS
+from AStar import AStar
 
-args = parser.parse_args()
-input = args.integers
-print(input)
+def preparePuzzle(input):
+    seen = set()
+    w = 4
+    h = 3
+    puzzle = [0 for x in range(w * h)]
 
-if len(input) < 11:
-    sys.exit("Incorrect number of tiles, must be 11")
+    index = 0
+    for i, x in enumerate(input):
+        if x in seen:
+            sys.exit("Duplicate tile in puzzle, must be unique")
+        else:
+            puzzle[index] = x, chr(ord('a') + i)
+        seen.add(x)
+        index += 1
 
-seen = set()
-w = 4
-h = 3
-Puzzle = [0 for x in range(w * h)]
+    print(puzzle)
+    return puzzle
 
-index = 0
-for i, x in enumerate(input):
-    if x in seen:
-        sys.exit("Duplicate tile in puzzle, must be unique")
-    else:
-        Puzzle[index] = x, chr(ord('a') + i)
-    seen.add(x)
-    index += 1
+def main():
+    parser = argparse.ArgumentParser(description='Solution to 11 tile puzzle with DFS, BFS and A*')
+    # P puzzle vector
+    parser.add_argument('integers', metavar='P', type=int, nargs='+', help=' 11 integers for the puzzle')
 
-print(Puzzle)
+    args = parser.parse_args()
+    input = args.integers
 
-node = node.Node(Puzzle, w, h)
-x, y = node.do_move()
-print(x, y)
+    if len(input) < 11:
+        sys.exit("Incorrect number of tiles, must be 11")
+
+
+    puzzle = preparePuzzle(input)
+
+    dfs = DFS(puzzle)
+    dfs.writePathInFile()
+    #DFS.writePathInFile() With heuristic h2
+
+    bfs = BFS(puzzle)
+    bfs.writePathInFile()
+    #BFS.writePathInFile() With heuristic h2
+
+    aStar = AStar(puzzle)
+    aStar.writePathInFile()
+    #AStar.writePathInFile() With heuristic h2
+
+if __name__ == "__main__":
+   main()
+
+#node = node.Node(Puzzle, w, h)
+#x, y = node.do_move()
+#print(x, y)
