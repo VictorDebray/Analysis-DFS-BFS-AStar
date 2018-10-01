@@ -43,8 +43,8 @@ def main():
     h = 3
     puzzle = preparePuzzle(input, w, h)
 
-    dfs = DFS(puzzle, w, h)
-    dfs.writePathInFile()
+    # dfs = DFS(puzzle, w, h)
+    # dfs.writePathInFile()
     # DFS.writePathInFile() With heuristic h2
 
     bfs = BFS(puzzle)

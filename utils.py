@@ -1,9 +1,5 @@
 def is_goal(puzzle):
-    arr = [x[0] for x in puzzle]
-    if arr is sorted(arr):
-        return True
-    return False
-
+    return puzzle == [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e'), (6, 'f'), (7, 'g'), (8, 'h'), (9, 'i'), (10, 'j'), (11, 'k'), (0, 'l')]
 
 def clean(node, open_states, closed_states):
     for i, item in enumerate(node.nodes):
