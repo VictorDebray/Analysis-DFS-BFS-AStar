@@ -2,13 +2,9 @@
 
 import sys
 import argparse
-import utils
 
-import node
-
-from DFS import DFS
-from BFS import BFS
-from AStar import AStar
+from Algorithm.BFS import BFS
+from Algorithm.AStar import AStar
 
 
 def preparePuzzle(input, w, h):

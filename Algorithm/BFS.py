@@ -5,4 +5,4 @@ class BFS:
         self.puzzle = puzzle
 
     def writePathInFile(self):
-        print('writing from BFS')
+        print('')

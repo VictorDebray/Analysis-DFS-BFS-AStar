@@ -1,11 +1,11 @@
 import utils
 import sys
-import node
+import Node
 
 class DFS:
     def __init__(self, puzzle, w, h):
         state = '0'
-        root = node.Node(state, puzzle, w, h)
+        root = Node.Node(state, puzzle, w, h)
         open_states = [root]
         closed_states = []
 
