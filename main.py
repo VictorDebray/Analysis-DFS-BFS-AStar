@@ -3,6 +3,7 @@
 import sys
 import argparse
 
+from Algorithm.DFS import DFS
 from Algorithm.BFS import BFS
 from Algorithm.AStar import AStar
 
@@ -39,16 +40,16 @@ def main():
     h = 3
     puzzle = preparePuzzle(input, w, h)
 
-    # dfs = DFS(puzzle, w, h)
+    dfs = DFS(puzzle, w, h)
     # dfs.writePathInFile()
     # DFS.writePathInFile() With heuristic h2
 
-    bfs = BFS(puzzle)
-    bfs.writePathInFile()
+    # bfs = BFS(puzzle)
+    # bfs.writePathInFile()
     # BFS.writePathInFile() With heuristic h2
 
-    aStar = AStar(puzzle)
-    aStar.writePathInFile()
+    # aStar = AStar(puzzle)
+    # aStar.writePathInFile()
     # AStar.writePathInFile() With heuristic h2
 
 

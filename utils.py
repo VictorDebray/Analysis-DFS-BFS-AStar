@@ -1,17 +1,22 @@
-def is_goal(puzzle):
-    return puzzle == [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'), (5, 'e'), (6, 'f'), (7, 'g'), (8, 'h'), (9, 'i'), (10, 'j'), (11, 'k'), (0, 'l')]
+def is_goal(id):
+    return id == 'bcdefghijkla'
 
-def clean(node, open_states, closed_states, open_list):
+
+def find_empty_tile_index(puzzle):
+    index = 0
+    for x, val in puzzle:
+        if x == 0:
+            return index
+        index += 1
+
+
+def clean(node, map_open_states, map_closed_states):
     id_node_tup = [(x.id, x) for x in node.nodes]
     for item in id_node_tup:
-        if item[0] in open_states:
+        if item[0] in map_open_states or item[0] in map_closed_states:
             node.nodes.remove(item[1])
-            break
-        for it in closed_states:
-            if it.id == item[0]:
-                node.nodes.remove(item[1])
 
-# def clean(node, open_states, closed_states):
+# def clean(node, open_states, closed_states, open_list):
 #     id_node_tup = [(x.id, x) for x in node.nodes]
 #     for item in id_node_tup:
 #         trig = False

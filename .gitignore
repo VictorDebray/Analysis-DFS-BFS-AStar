@@ -59,3 +59,10 @@ target/
 .idea
 
 \.vscode/
+
+puzzleDFS.txt
+puzzleBFS-h1.txt
+puzzleBFS-h2.txt
+puzzleAs-h1.txt
+puzzleAs-h2.txt
+
