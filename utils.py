@@ -4,7 +4,7 @@ def is_goal(id):
 
 def find_empty_tile_index(puzzle):
     index = 0
-    for x, val in puzzle:
+    for x in puzzle:
         if x == 0:
             return index
         index += 1
@@ -21,7 +21,7 @@ def format_move(file, tile_move, puzzle):
     first = 0
 
     file.write(tile_move + ' [')
-    for idx, val in puzzle:
+    for idx in puzzle:
         if first == 0:
             file.write(str(idx))
             first += 1

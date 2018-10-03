@@ -17,7 +17,7 @@ def preparePuzzle(input, w, h):
         if x in seen:
             sys.exit("Duplicate tile in puzzle, must be unique")
         else:
-            puzzle[index] = x, chr(ord('a') + i)
+            puzzle[index] = x
         seen.add(x)
         index += 1
 
@@ -41,7 +41,7 @@ def main():
     puzzle = preparePuzzle(input, w, h)
 
     dfs = DFS(puzzle, w, h)
-    # dfs.launchSearch()
+    dfs.launchSearch()
     # dfs.writePathInFile()
     # DFS.writePathInFile() With heuristic h2
 

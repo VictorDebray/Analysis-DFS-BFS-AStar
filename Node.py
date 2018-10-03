@@ -19,7 +19,7 @@ movements_array = [
 class Node:
 
     def __init__(self, move, prev_dir, puzzle, o_index, w, h):
-        self.id = ''.join(chr(x[0] + 97) for x in puzzle)
+        self.id = ''.join(chr(x + 97) for x in puzzle)
         self.tile_move = move
         self.prev_dir = prev_dir
         self.puzzle = puzzle
