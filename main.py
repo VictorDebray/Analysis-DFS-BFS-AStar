@@ -41,6 +41,7 @@ def main():
     puzzle = preparePuzzle(input, w, h)
 
     dfs = DFS(puzzle, w, h)
+    # dfs.launchSearch()
     # dfs.writePathInFile()
     # DFS.writePathInFile() With heuristic h2
 
