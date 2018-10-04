@@ -61,8 +61,8 @@ target/
 \.vscode/
 
 puzzleDFS.txt
-puzzleBFS-h1.txt
-puzzleBFS-h2.txt
+puzzleBFirst-h1.txt
+puzzleBFirst-h2.txt
 puzzleAs-h1.txt
 puzzleAs-h2.txt
 

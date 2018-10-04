@@ -4,7 +4,7 @@ import sys
 import argparse
 
 from Algorithm.DFS import DFS
-from Algorithm.BFS import BFS
+from Algorithm.BFirstS import BFirstS
 from Algorithm.AStar import AStar
 
 
@@ -26,7 +26,7 @@ def preparePuzzle(input, w, h):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Solution to 11 tile puzzle with DFS, BFS and A*')
+    parser = argparse.ArgumentParser(description='Solution to 11 tile puzzle with DFS, BFirst and A*')
     # P puzzle vector
     parser.add_argument('integers', metavar='P', type=int, nargs='+', help=' 11 integers for the puzzle')
 
@@ -40,14 +40,15 @@ def main():
     h = 3
     puzzle = preparePuzzle(input, w, h)
 
-    dfs = DFS(puzzle, w, h)
-    dfs.launchSearch()
+    # dfs = DFS(puzzle, w, h)
+    # dfs.launchSearch()
     # dfs.writePathInFile()
     # DFS.writePathInFile() With heuristic h2
 
-    # bfs = BFS(puzzle)
-    # bfs.writePathInFile()
-    # BFS.writePathInFile() With heuristic h2
+    bfs = BFirstS(puzzle, w, h)
+    bfs.launchSearch()
+    bfs.writePathInFile()
+    # BFirst.writePathInFile() With heuristic h2
 
     # aStar = AStar(puzzle)
     # aStar.writePathInFile()

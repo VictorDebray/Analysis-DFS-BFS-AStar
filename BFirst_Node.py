@@ -24,6 +24,7 @@ class Node:
         self.tile_move = move
         self.prev_dir = prev_dir
         self.puzzle = puzzle
+        self.h_cost = Heuristics.manhattan_distance(puzzle)
         self.width = w
         self.height = h
         self.nodes = []
@@ -41,3 +42,6 @@ class Node:
     def print_node(self):
         for node in self.nodes:
             print(node.puzzle)
+
+    def __lt__(self, other):
+        return self.h_cost <= other.h_cost
