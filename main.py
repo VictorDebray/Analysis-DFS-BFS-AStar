@@ -30,7 +30,7 @@ def main():
     # P puzzle vector
     parser.add_argument('-p', '--puzzle', metavar='tile', type=int, nargs=12, help=' 11 integers for the puzzle')
     parser.add_argument('-d', '--DFSmax', metavar='depth_max', default=5, type=int, help='Depth Max of Depth First Search')
-    parser.add_argument('-b', '--BFSmax', metavar='depth_max', default=5, type=int, help='Depth Max of Depth First Search')
+    parser.add_argument('-b', '--BFSmax', metavar='depth_max', default=5, type=int, help='Depth Max of Best First Search')
 
     args = parser.parse_args()
     input = args.puzzle
@@ -44,15 +44,15 @@ def main():
     h = 3
     puzzle = preparePuzzle(input, w, h)
 
-    dfs = DFS(puzzle, w, h, DFS_depth_max)
-    dfs.launchSearch()
+    #dfs = DFS(puzzle, w, h, DFS_depth_max)
+    #dfs.launchSearch()
 
-    bfs = BFirstS(puzzle, w, h, BFS_depth_max)
-    bfs.launchSearch()
+    #bfs = BFirstS(puzzle, w, h, BFS_depth_max)
+    #bfs.launchSearch()
     # BFirst.writePathInFile() With heuristic h2
 
-    # aStar = AStar(puzzle)
-    # aStar.writePathInFile()
+    aStar = AStar(puzzle, w, h)
+    aStar.launchSearch()
     # AStar.writePathInFile() With heuristic h2
 
 

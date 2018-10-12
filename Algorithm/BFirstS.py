@@ -1,5 +1,4 @@
-import BFirst_Node
-import sys
+from Nodes import BFirst_Node
 import utils
 import heapq
 
@@ -21,13 +20,17 @@ class BFirstS:
         while self.open_states.__len__() is not 0:
             (h_cost, item) = heapq.heappop(self.open_states)
             del self.map_open_states[item.id]
+
             self.debug_f.write(utils.format_move(item))
+
             if utils.is_goal(item.id):
                 utils.solution_path(self.f, item)
                 break
+
             item.do_moves()
             self.closed_states.insert(0, item)
             self.map_closed_states[item.id] = item
+
             utils.clean(item, self.map_open_states, self.map_closed_states)
             for it in item.nodes:
                 heapq.heappush(self.open_states, (it.h_cost, it))

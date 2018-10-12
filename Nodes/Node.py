@@ -3,9 +3,9 @@ import movements
 
 class Node:
 
-    def __init__(self, move, prev_dir, puzzle, o_index, w, h):
+    def __init__(self, move_name, prev_dir, puzzle, o_index, w, h):
         self.id = ''.join(chr(x + 97) for x in puzzle)
-        self.tile_move = move
+        self.move_name = move_name
         self.prev_dir = prev_dir
         self.puzzle = puzzle
         self.width = w

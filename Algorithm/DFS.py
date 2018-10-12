@@ -1,6 +1,5 @@
 import utils
-import sys
-import DFSNode
+from Nodes import DFSNode
 
 
 class DFS:

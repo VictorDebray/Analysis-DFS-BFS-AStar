@@ -19,7 +19,7 @@ def clean(node, map_open_states, map_closed_states):
 
 def format_move(node):
     first = 0
-    string = node.tile_move + ' ['
+    string = node.move_name + ' ['
     for idx in node.puzzle:
         if first == 0:
             string += str(idx)
