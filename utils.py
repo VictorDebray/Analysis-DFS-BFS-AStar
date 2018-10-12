@@ -17,17 +17,31 @@ def clean(node, map_open_states, map_closed_states):
             node.nodes.remove(item[1])
 
 
-def format_move(file, tile_move, puzzle):
+def format_move(node):
     first = 0
-
-    file.write(tile_move + ' [')
-    for idx in puzzle:
+    string = node.tile_move + ' ['
+    for idx in node.puzzle:
         if first == 0:
-            file.write(str(idx))
+            string += str(idx)
             first += 1
         else:
-            file.write(', ' + str(idx))
-    file.write(']\n')
+            string += ', ' + str(idx)
+    string += ']\n'
+    return string
+
+
+def solution_path(file, node):
+    solution = []
+    solution.insert(0, format_move(node))
+    it = node.parent_node
+    while True:
+        solution.insert(0, format_move(it))
+        it = it.parent_node
+        if it is None:
+            break
+    for path in solution:
+        file.write(path)
+
 
 
 # def clean(node, open_states, closed_states, open_list):

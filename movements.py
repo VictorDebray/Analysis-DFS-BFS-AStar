@@ -1,3 +1,6 @@
+import collections
+
+
 def move_up(old_p, i, w, h):
     puzzle = old_p[:]
     y = i // w
@@ -96,3 +99,18 @@ def move_left(old_p, i, w, h):
         puzzle[new_i] = temp
         return new_i, chr(new_i + 97), puzzle
     return None, None, None
+
+
+Movement = collections.namedtuple('MovementsTuple',
+                                  ['move', 'counter_move', 'func'])
+
+movements_array = [
+    Movement(0, 4, move_up),
+    Movement(1, 5, move_up_right),
+    Movement(2, 6, move_right),
+    Movement(3, 7, move_down_right),
+    Movement(4, 0, move_down),
+    Movement(5, 1, move_down_left),
+    Movement(6, 2, move_left),
+    Movement(7, 3, move_up_left)
+]

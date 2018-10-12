@@ -28,10 +28,14 @@ def preparePuzzle(input, w, h):
 def main():
     parser = argparse.ArgumentParser(description='Solution to 11 tile puzzle with DFS, BFirst and A*')
     # P puzzle vector
-    parser.add_argument('integers', metavar='P', type=int, nargs='+', help=' 11 integers for the puzzle')
+    parser.add_argument('-p', '--puzzle', metavar='tile', type=int, nargs=12, help=' 11 integers for the puzzle')
+    parser.add_argument('-d', '--DFSmax', metavar='depth_max', default=5, type=int, help='Depth Max of Depth First Search')
+    parser.add_argument('-b', '--BFSmax', metavar='depth_max', default=5, type=int, help='Depth Max of Depth First Search')
 
     args = parser.parse_args()
-    input = args.integers
+    input = args.puzzle
+    DFS_depth_max = args.DFSmax
+    BFS_depth_max = args.BFSmax
 
     if len(input) < 11:
         sys.exit("Incorrect number of tiles, must be 11")
@@ -40,14 +44,11 @@ def main():
     h = 3
     puzzle = preparePuzzle(input, w, h)
 
-    # dfs = DFS(puzzle, w, h)
-    # dfs.launchSearch()
-    # dfs.writePathInFile()
-    # DFS.writePathInFile() With heuristic h2
+    dfs = DFS(puzzle, w, h, DFS_depth_max)
+    dfs.launchSearch()
 
-    bfs = BFirstS(puzzle, w, h)
+    bfs = BFirstS(puzzle, w, h, BFS_depth_max)
     bfs.launchSearch()
-    bfs.writePathInFile()
     # BFirst.writePathInFile() With heuristic h2
 
     # aStar = AStar(puzzle)
