@@ -1,24 +1,37 @@
 import math
+import collections
 
+GoalPosition = collections.namedtuple('PositionsTuple',
+                                  ['goal_x', 'goal_y'])
+
+goal_positions_array = [
+    GoalPosition(3, 2),
+    GoalPosition(0, 0),
+    GoalPosition(1, 0),
+    GoalPosition(2, 0),
+    GoalPosition(3, 0),
+    GoalPosition(0, 1),
+    GoalPosition(1, 1),
+    GoalPosition(2, 1),
+    GoalPosition(3, 1),
+    GoalPosition(0, 2),
+    GoalPosition(1, 2),
+    GoalPosition(2, 2)
+]
 
 def manhattan_distance(puzzle, w, h):
     h_cost = 0
     manhattan_distance.max_tile_value = w * h - 1
     for idx, tile in enumerate(puzzle):
-        if tile == 0:
-            correct_pos_x = manhattan_distance.max_tile_value // w
-            correct_pos_y = manhattan_distance.max_tile_value % w
-            tile_x = (manhattan_distance.max_tile_value - idx - 1) // w
-            tile_y = (manhattan_distance.max_tile_value - idx - 1) % h
-        else:
-            correct_pos_x = idx // w
-            correct_pos_y = idx % h
-            tile_x = (tile - 1) // w
-            tile_y = (tile - 1) % h
-        hyp = math.floor(math.sqrt((tile_x - correct_pos_x) ** 2 + (tile_y - correct_pos_y) ** 2))
-        h_cost += hyp
-    return h_cost
+        current_x = idx % w
+        current_y = idx // w
+        goal_x = goal_positions_array[tile].goal_x
+        goal_y = goal_positions_array[tile].goal_y
 
+        hyp = math.floor(math.sqrt((current_x - goal_x) ** 2 + (current_y - goal_y) ** 2))
+        h_cost += hyp
+
+    return h_cost
 
 # def permutation_inversion(puzzle):
 #     h_cost = 0
