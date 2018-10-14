@@ -2,7 +2,7 @@ import math
 import collections
 
 GoalPosition = collections.namedtuple('PositionsTuple',
-                                  ['goal_x', 'goal_y'])
+                                      ['goal_x', 'goal_y'])
 
 goal_positions_array = [
     GoalPosition(3, 2),
@@ -19,6 +19,7 @@ goal_positions_array = [
     GoalPosition(2, 2)
 ]
 
+
 def manhattan_distance(puzzle, w, h):
     h_cost = 0
     manhattan_distance.max_tile_value = w * h - 1
@@ -33,7 +34,9 @@ def manhattan_distance(puzzle, w, h):
 
     return h_cost
 
-# def permutation_inversion(puzzle):
-#     h_cost = 0
-#     for idx, tile in enumerate(puzzle):
-#
+
+def diagonal_distance(puzzle, w, h):
+    h_cost = 0
+    for idx, tile in enumerate(puzzle):
+        h_cost += abs(tile - 1 - idx)
+    return h_cost

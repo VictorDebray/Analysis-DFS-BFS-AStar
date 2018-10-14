@@ -3,6 +3,7 @@
 import sys
 import argparse
 
+from Heuristics import Heuristics
 from Algorithm.DFS import DFS
 from Algorithm.BFirstS import BFirstS
 from Algorithm.AStar import AStar
@@ -44,12 +45,13 @@ def main():
     h = 3
     puzzle = preparePuzzle(input, w, h)
 
-    #dfs = DFS(puzzle, w, h, DFS_depth_max)
-    #dfs.launchSearch()
+    dfs = DFS(puzzle, w, h, DFS_depth_max)
+    dfs.launchSearch()
 
-    #bfs = BFirstS(puzzle, w, h, BFS_depth_max)
-    #bfs.launchSearch()
-    # BFirst.writePathInFile() With heuristic h2
+    bfs_h1 = BFirstS(Heuristics.diagonal_distance, "h1", puzzle, w, h)
+    bfs_h1.launchSearch()
+    bfs_h2 = BFirstS(Heuristics.manhattan_distance, "h2", puzzle, w, h)
+    bfs_h2.launchSearch()
 
     aStar = AStar(puzzle, w, h)
     aStar.launchSearch()
