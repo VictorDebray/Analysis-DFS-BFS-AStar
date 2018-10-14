@@ -17,6 +17,15 @@ def clean(node, map_open_states, map_closed_states):
             node.nodes.remove(item[1])
 
 
+def get_same_node_with_higher_f(node, new_f_cost, map_open_states):
+    id_node_tup = [(x.id, x) for x in node.nodes]
+    for item in id_node_tup:
+        if item[0] in map_open_states:
+            if new_f_cost < item[1].f_cost:
+                return item[1]
+    return None
+
+
 def format_move(node):
     first = 0
     string = node.move_name + ' ['
@@ -41,7 +50,6 @@ def solution_path(file, node):
             break
     for path in solution:
         file.write(path)
-
 
 
 # def clean(node, open_states, closed_states, open_list):

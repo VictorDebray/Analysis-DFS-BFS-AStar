@@ -6,7 +6,7 @@ import argparse
 from Heuristics import Heuristics
 from Algorithm.DFS import DFS
 from Algorithm.BFirstS import BFirstS
-from Algorithm.AStar import AStar
+from Algorithm.MyAStar import MyAStar
 
 
 def preparePuzzle(input, w, h):
@@ -53,8 +53,10 @@ def main():
     bfs_h2 = BFirstS(Heuristics.manhattan_distance, "h2", puzzle, w, h)
     bfs_h2.launchSearch()
 
-    aStar = AStar(puzzle, w, h)
-    aStar.launchSearch()
+    astar_h1 = MyAStar(Heuristics.diagonal_distance, "h1", puzzle, w, h)
+    astar_h1.launchSearch()
+    astar_h2 = MyAStar(Heuristics.manhattan_distance, "h2", puzzle, w, h)
+    astar_h2.launchSearch()
     # AStar.writePathInFile() With heuristic h2
 
 
