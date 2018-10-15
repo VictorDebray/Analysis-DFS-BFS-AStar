@@ -41,10 +41,3 @@ def solution_path(file, node):
             break
     for path in solution:
         file.write(path)
-
-
-def g_cost_movement(movement_idx):
-    if movement_idx % 2 is not 0:
-        return 1.41
-    else:
-        return 1.0
