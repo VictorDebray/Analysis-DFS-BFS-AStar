@@ -6,7 +6,7 @@ import argparse
 from Heuristics import Heuristics
 from Algorithm.DFS import DFS
 from Algorithm.BFirstS import BFirstS
-from Algorithm.MyAStar import MyAStar
+from Algorithm.AStar import AStar
 
 
 def preparePuzzle(input, w, h):
@@ -26,17 +26,34 @@ def preparePuzzle(input, w, h):
     return puzzle
 
 
+def doDFS(puzzle, w, h, DFS_depth_max):
+    dfs = DFS(puzzle, w, h, DFS_depth_max)
+    dfs.launchSearch()
+
+
+def doBFS(puzzle, w, h):
+    bfs_h1 = BFirstS(Heuristics.diagonal_distance, "h1", puzzle, w, h)
+    bfs_h1.launchSearch()
+    bfs_h2 = BFirstS(Heuristics.manhattan_distance, "h2", puzzle, w, h)
+    bfs_h2.launchSearch()
+
+
+def doAStar(puzzle, w, h):
+    astar_h1 = AStar(Heuristics.diagonal_distance, "h1", puzzle, w, h)
+    astar_h1.launchSearch()
+    astar_h2 = AStar(Heuristics.manhattan_distance, "h2", puzzle, w, h)
+    astar_h2.launchSearch()
+
+
 def main():
     parser = argparse.ArgumentParser(description='Solution to 11 tile puzzle with DFS, BFirst and A*')
     # P puzzle vector
     parser.add_argument('-p', '--puzzle', metavar='tile', type=int, nargs=12, help=' 11 integers for the puzzle')
     parser.add_argument('-d', '--DFSmax', metavar='depth_max', default=5, type=int, help='Depth Max of Depth First Search')
-    parser.add_argument('-b', '--BFSmax', metavar='depth_max', default=5, type=int, help='Depth Max of Best First Search')
 
     args = parser.parse_args()
     input = args.puzzle
     DFS_depth_max = args.DFSmax
-    BFS_depth_max = args.BFSmax
 
     if len(input) < 11:
         sys.exit("Incorrect number of tiles, must be 11")
@@ -45,24 +62,9 @@ def main():
     h = 3
     puzzle = preparePuzzle(input, w, h)
 
-    dfs = DFS(puzzle, w, h, DFS_depth_max)
-    dfs.launchSearch()
-
-    bfs_h1 = BFirstS(Heuristics.diagonal_distance, "h1", puzzle, w, h)
-    bfs_h1.launchSearch()
-    bfs_h2 = BFirstS(Heuristics.manhattan_distance, "h2", puzzle, w, h)
-    bfs_h2.launchSearch()
-
-    astar_h1 = MyAStar(Heuristics.diagonal_distance, "h1", puzzle, w, h)
-    astar_h1.launchSearch()
-    astar_h2 = MyAStar(Heuristics.manhattan_distance, "h2", puzzle, w, h)
-    astar_h2.launchSearch()
-    # AStar.writePathInFile() With heuristic h2
-
+    doDFS(puzzle, w, h)
+    doBFS(puzzle, w, h)
+    doAStar(puzzle, w, h)
 
 if __name__ == "__main__":
     main()
-
-# node = node.Node(Puzzle, w, h)
-# x, y = node.do_move()
-# print(x, y)

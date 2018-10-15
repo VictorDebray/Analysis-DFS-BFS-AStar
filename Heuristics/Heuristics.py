@@ -21,6 +21,7 @@ goal_positions_array = [
 
 
 def manhattan_distance(puzzle, w, h):
+
     h_cost = 0
     manhattan_distance.max_tile_value = w * h - 1
     for idx, tile in enumerate(puzzle):
