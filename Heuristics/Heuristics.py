@@ -23,21 +23,20 @@ goal_positions_array = [
 def manhattan_distance(puzzle, w, h):
 
     h_cost = 0
-    manhattan_distance.max_tile_value = w * h - 1
     for idx, tile in enumerate(puzzle):
-        current_x = idx % w
-        current_y = idx // w
-        goal_x = goal_positions_array[tile].goal_x
-        goal_y = goal_positions_array[tile].goal_y
-
-        hyp = math.floor(math.sqrt((current_x - goal_x) ** 2 + (current_y - goal_y) ** 2))
-        h_cost += hyp
+        h_cost += math.floor(
+            math.sqrt(
+                ((idx % w) - goal_positions_array[tile].goal_x) ** 2 +
+                ((idx // w) - goal_positions_array[tile].goal_y) ** 2))
 
     return h_cost
 
 
-def diagonal_distance(puzzle, w, h):
+def misplaced(puzzle, w, h):
     h_cost = 0
+    goal_array = [1,2,3,4,5,6,7,8,9,10,11,0]
     for idx, tile in enumerate(puzzle):
-        h_cost += abs(tile - 1 - idx)
+        if (tile != goal_array[idx]):
+            h_cost += 1
+
     return h_cost
