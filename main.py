@@ -2,7 +2,6 @@
 
 import sys
 import argparse
-import random
 
 from Heuristics import Heuristics
 from Algorithm.DFS import DFS
@@ -31,32 +30,18 @@ def doDFS(puzzle, w, h, DFS_depth_max):
     dfs = DFS(puzzle, w, h, DFS_depth_max)
     dfs.launchSearch()
 
-def loopOnBFS(puzzles, w, h):
-    i = 0
-    while (i < puzzles.__len__()):
-        print("BFS ", puzzles[i])
-        doBFS(puzzles[i], w, h, i)
-        i += 1
 
+def doBFS(puzzle, w, h):
+    bfs_h1 = BFirstS(Heuristics.misplaced, "h1", puzzle, w, h)
+    bfs_h1.launchSearch()
 
-def doBFS(puzzle, w, h, i):
-    # bfs_h1 = BFirstS(Heuristics.misplaced, "h1" + i.__str__(), puzzle, w, h)
-    # bfs_h1.launchSearch()
-
-    bfs_h2 = BFirstS(Heuristics.manhattan_distance, "h2" + i.__str__(), puzzle, w, h)
+    bfs_h2 = BFirstS(Heuristics.manhattan_distance, "h2", puzzle, w, h)
     bfs_h2.launchSearch()
 
 
-
-def loopOnAStar(puzzles, w, h):
-    for p in puzzles:
-        print("AStar", p)
-        doAStar(p, w, h)
-
-
 def doAStar(puzzle, w, h):
-    #astar_h1 = AStar(Heuristics.misplaced, "h1", puzzle, w, h)
-    #astar_h1.launchSearch()
+    astar_h1 = AStar(Heuristics.misplaced, "h1", puzzle, w, h)
+    astar_h1.launchSearch()
 
     astar_h2 = AStar(Heuristics.manhattan_distance, "h2", puzzle, w, h)
     astar_h2.launchSearch()
@@ -79,15 +64,11 @@ def main():
     h = 3
     puzzle = preparePuzzle(input, w, h)
 
-    puzzles = []
-    i = 0
-    while (i < 10):
-        puzzles.append(random.sample(range(0, 12), 12))
-        i += 1
+    doDFS(puzzle, w, h, DFS_depth_max)
+    doBFS(puzzle, w, h)
+    doAStar(puzzle, w, h)
 
-    #doDFS(puzzle, w, h, DFS_depth_max)
-    loopOnBFS(puzzles, w, h)
-    #loopOnAStar(puzzles, w, h)
 
 if __name__ == "__main__":
     main()
+
