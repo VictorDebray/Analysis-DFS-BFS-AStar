@@ -39,7 +39,7 @@ class AStar:
                 child_node = AStar_Node.AStarNode(move_name, it.move, new_puzzle,
                                                   new_empty_tile_index, item.width,
                                                   item.height, item.heuristic)
-                child_node.g_cost = utils.g_cost_movement(idx)
+                child_node.g_cost += 1
 
                 if child_node.id in self.map_closed_states:
                     continue
