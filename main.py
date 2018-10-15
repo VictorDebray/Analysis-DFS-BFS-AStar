@@ -62,7 +62,7 @@ def main():
     h = 3
     puzzle = preparePuzzle(input, w, h)
 
-    doDFS(puzzle, w, h)
+#    doDFS(puzzle, w, h, DFS_depth_max)
     doBFS(puzzle, w, h)
     doAStar(puzzle, w, h)
 
