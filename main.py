@@ -57,8 +57,8 @@ def main():
     input = args.puzzle
     DFS_depth_max = args.DFSmax
 
-    if len(input) < 11:
-        sys.exit("Incorrect number of tiles, must be 11")
+    if input is None or len(input) < 11:
+        sys.exit("Incorrect number of tiles, must be 12")
 
     w = 4
     h = 3
