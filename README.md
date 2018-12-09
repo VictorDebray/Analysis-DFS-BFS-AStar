@@ -1,4 +1,4 @@
-COMP472-miniproject1
+Analysis of the DFS Best First and A* algorithms (see AlgorithmReport)
 
 # How to execute our program ?
 
@@ -11,4 +11,5 @@ $ python main.py -p [tiles] -d [max_depth]
 ````
 
 [tiles] being the tiles of your puzzles separated by a space (they should be 12 and do not have duplicates)
+
 [max_depth] being the maximal depth of the search with DFS
